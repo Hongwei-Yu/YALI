@@ -6,17 +6,21 @@ import (
 	"log"
 )
 
-var Global timestorage.InfluxConnect
+var GTC timestorage.InfluxConnect // global time connector
+var GTW timestorage.InfluxWriter  // global time writer
 
 type Connectors struct {
 }
 
 func InitInflux() {
-	Global = timestorage.InfluxConnect{Proto: "http", Host: "192.168.0.110", Port: "8086",
+	GTC = timestorage.InfluxConnect{Proto: "http", Host: "192.168.0.110", Port: "8086",
 		Token: "zdng0zJ7Wc69NbuD7lcot6cToX_UacEmspIu4oKGS368_sdkZqq8PjChHRsMOZrrvBu270sKSW5rRR4uVafDYQ==",
 	}
-	Global.Client = influxdb2.NewClient(Global.Proto+"://"+Global.Host+":"+Global.Port, Global.Token)
-	if Global.Client == nil {
+	GTW = timestorage.InfluxWriter{Org: "YALI", Bucket: "YALI_DEV"}
+
+	GTC.Client = influxdb2.NewClient(GTC.Proto+"://"+GTC.Host+":"+GTC.Port, GTC.Token)
+	if GTC.Client == nil {
 		log.Fatalln("connect error")
 	}
+	GTW.Writer = GTC.Client.WriteAPIBlocking(GTW.Org, GTW.Bucket)
 }
