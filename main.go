@@ -1,10 +1,9 @@
 package main
 
 import (
-	"YALI/store"
-	"github.com/influxdata/influxdb-client-go/v2/api/write"
+	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
 	"log"
-	"time"
 )
 
 //	func main() {
@@ -42,9 +41,19 @@ import (
 //		}
 //	}
 func main() {
-	store.InitInflux()
-	err := store.GTW.Write(write.NewPoint("test", map[string]string{"key": "value"}, map[string]interface{}{"field": 10}, time.Now()))
+	db, err := sql.Open("sqlite3", ":memory:")
+
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer db.Close()
+
+	var version string
+	err = db.QueryRow("SELECT SQLITE_VERSION()").Scan(&version)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
