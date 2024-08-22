@@ -1,0 +1,14 @@
+DB:
+  rela:
+    servername: sqlite3
+    dbname: test.db
+
+  time:
+    proto: http
+    host: localhost
+    port: 8086
+    token: dTSW5gtSQpq4j_xlkSwfm4w0XS14ZkFSMK93lJpT3H8hsZYnXovTKKmqRYSo70pvHM0qeT18ZuhT8ZZYYjo-7A==
+    buck: YALI_DEV
+    org: YALI
+
+
