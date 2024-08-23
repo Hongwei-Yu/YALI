@@ -3,6 +3,7 @@ package timestorage
 import (
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/influxdata/influxdb-client-go/v2/api"
+	"sync"
 )
 
 type InfluxConnect struct {
@@ -16,5 +17,6 @@ type InfluxConnect struct {
 type InfluxWriter struct {
 	Org    string
 	Bucket string
+	Wmu    sync.Mutex
 	Writer api.WriteAPIBlocking
 }
