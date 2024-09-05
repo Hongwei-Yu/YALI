@@ -1,4 +1,4 @@
-package model
+package http
 
 const (
 	NoAuth         = "noauth"

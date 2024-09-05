@@ -1,6 +1,6 @@
-package model
+package http
 
-import "github.com/google/uuid"
+import uuid "github.com/satori/go.uuid"
 
 type Api struct {
 	TargetId   string      `json:"target_id"`
