@@ -8,5 +8,6 @@ import (
 func InitRouter(Router *gin.RouterGroup) {
 	{
 		Router.GET("/engine/health", api.Health)
+		Router.POST("/engine/RunApi", api.RunApi)
 	}
 }

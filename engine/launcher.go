@@ -1,7 +1,7 @@
 package engine
 
-import "time"
-
+// Launcher  api 启动器接口
 type Launcher interface {
-	send() (bool, int64, uint64, float64, float64, string, time.Time, time.Time)
+	send()
+	save()
 }
